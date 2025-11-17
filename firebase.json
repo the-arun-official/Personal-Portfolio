@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "arunx",
     "public": ".",
     "ignore": [
       "firebase.json",

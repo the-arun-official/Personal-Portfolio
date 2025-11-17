@@ -288,7 +288,7 @@ const projectStops = [
     title: "Creative Portfolio",
     img: "/assets/images/Project_1.png",
     desc: "A fully animated creative portfolio with smooth UI interactions.",
-    link: "https://your-portfolio-link.com"
+    link: "https://arunx.web.app/"
   },
   {
     id: "dot2",

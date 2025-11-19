@@ -471,3 +471,55 @@ window.onload = () => {
   });
 };
 
+const facts = [
+  "I design interfaces that feel alive — movement and timing matter more than color.",
+  "I solve problems by simplifying, not adding more features.",
+  "I love products that think for the user, not the other way around.",
+  "If something feels off by 1 pixel, I WILL notice.",
+  "I believe good UI should be invisible and good UX should feel obvious.",
+  "My best ideas come at 2:17 AM for no reason.",
+  "I prefer clean architecture over quick hacks — even under pressure.",
+  "I chase the feeling of 'wow this feels smooth' in every project.",
+  "Clarity > cleverness. Consistency > chaos.",
+  "Building something meaningful matters more than being perfect."
+];
+
+let index = 0;
+
+const factBox = document.getElementById("factBox");
+const prevBtn = document.getElementById("prevFact");
+const nextBtn = document.getElementById("nextFact");
+
+function updateFact() {
+  factBox.classList.add("fade-out");
+  
+  setTimeout(() => {
+    factBox.textContent = facts[index];
+    factBox.classList.remove("fade-out");
+    factBox.classList.add("fade-in");
+
+    setTimeout(() => {
+      factBox.classList.remove("fade-in");
+    }, 300);
+
+  }, 200);
+}
+
+nextBtn.addEventListener("click", () => {
+  index = (index + 1) % facts.length;
+  updateFact();
+});
+
+prevBtn.addEventListener("click", () => {
+  index = (index - 1 + facts.length) % facts.length;
+  updateFact();
+});
+
+// Auto-rotate every 4 seconds
+setInterval(() => {
+  index = (index + 1) % facts.length;
+  updateFact();
+}, 4000);
+
+// Initial fact load
+updateFact();

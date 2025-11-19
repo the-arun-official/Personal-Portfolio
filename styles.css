@@ -33,6 +33,9 @@ body {
   background: #e8e8e9;
   min-height: 100vh;
 }
+.snap { scroll-snap-type: none !important; }
+[data-aos] { opacity: 0 !important; transform: translateY(20px) !important; }
+[data-aos].aos-animate { opacity: 1 !important; transform: translateY(0) !important; }
 
 @media (prefers-color-scheme: light) {
   :root { color-scheme: light; }
@@ -495,9 +498,9 @@ body {
 
 .model1 {
   width: 100%;
-  max-width: 520px;
-  height: 360px;
-  display: block;
+  max-width: 350px;
+  height: 350px;
+    display: block;
 }
 
 .scroll-hint {
@@ -533,7 +536,8 @@ body {
 
   .model1 {
     width: 100%;
-    max-width: 400px;
+    max-width: 409px;
+    height: 300px;
     display: block;
   }
 }
@@ -883,8 +887,8 @@ body {
   height: 50vh;
 }
 
-.wrapper .card { margin-bottom: 40px; margin-left: 20px; perspective: 600px; }
-.wrapper .card .faces { width: 280px; height: 280px; transform-style: preserve-3d; }
+.wrapper .card {margin-bottom: -50px;margin-left: 20px;perspective: 600px;}
+.wrapper .card .faces {width: 200px;height: 200px;transform-style: preserve-3d;}
 .wrapper .card .faces .face {
   width: 100%;
   height: 100%;
@@ -1140,7 +1144,18 @@ body {
   gap: 80px;
   flex-wrap: wrap;
 }
-
+.bg-ghost {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.5;
+  margin-top: 30px;
+  margin-left: 40px;
+}
 .orb-left {
   width: 320px;
   height: 320px;
@@ -1155,9 +1170,6 @@ body {
   height: 260px;
   border-radius: 50%;
   position: relative;
-  background-color: color-mix(in srgb, var(--c-glass) 12%, transparent);
-  backdrop-filter: blur(8px) saturate(var(--saturation));
-  -webkit-backdrop-filter: blur(8px) saturate(var(--saturation));
   box-shadow: var(--liquid);
   animation: rotateOrbit 18s linear infinite;
 }
@@ -1483,6 +1495,39 @@ body {
   padding: 20px 24px;
   max-width: 420px;
 }
+/* background layer */
+.bg-lottie {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+pointer-events: none !important; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.25;
+  margin-bottom: 200px;
+}
+.bg-lottie-2 {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.25;
+  margin-left: 29px;
+  margin-top: 350px;
+}
+
+/* responsive animation */
+.bg-lottie dotlottie-wc {
+  width: 60%;
+  max-width: 400px;
+  min-width: 400px;
+  height: auto;
+  transform: translateY(-10%);
+}
 
 .project-left .section-title {
   font-size: 22px;
@@ -1593,140 +1638,161 @@ body {
 
 .card.hero { padding: 22px; }
 .tilt-card { transform-style: preserve-3d; will-change: transform; transition: transform .2s ease; }
-
-#contact {
-  position: relative;
-  overflow: hidden;
-}
-
-#contact::before {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    300px circle at 30% 20%,
-    var(--accent) 0%,
-    transparent 65%
-  );
-  opacity: 0.28;
-  filter: blur(120px);
-  z-index: 0;
-}
-
-#contact .container-c {
-  position: relative;
+/* ---------- Layout ---------- */
+.contact-section {
+  min-height: 100vh;
+  padding: 80px 20px;
+  background: #0c0c0c;
+  color: #fff;
   display: flex;
-  flex-direction: column;
-  gap: 30px;
+  align-items: center;
+  justify-content: center;
 }
 
-.contact-card {
-  display: grid;
-  grid-template-columns: 90px 1fr;
-  gap: 24px;
-
-  padding: 28px;
-  border-radius: 26px;
-
-  border: 1px solid rgba(255,255,255,0.35);
-  box-shadow:
-    0 12px 40px rgba(0,0,0,0.16),
-    inset 0 0 0 1px rgba(255,255,255,0.35);
-
-  animation: fadeUp 0.7s ease both;
-}
-
-.avatar.large img {
-  width: 90px;
-  height: 90px;
-  border-radius: 22px;
-  border: 2px solid rgba(255,255,255,0.55);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-  object-fit: cover;
-  animation: softFloat 4s ease-in-out infinite;
-}
-
-
-.contact-card .info p {
-  margin: 3px 0;
-  font-size: 14px;
-  color: #1c1f26;
-  font-weight: 500;
-  line-height: 1.4;
-}
-
-.contact-card strong {
-  font-size: 11px;
-  letter-spacing: 1px;
-  color: #6a6f7d;
-  text-transform: uppercase;
-}
-
-.contact-card a {
-  color: var(--accent);
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: 0.25s ease;
-}
-
-.contact-card a:hover {
-  opacity: 0.7;
-  text-shadow: 0 0 10px var(--accent);
-}
-
-
-
-.contact-extra {
-  display: grid;
-
-}
-
-.contact-map {
-  padding: 20px;
-  border-radius: 22px;
-  background: rgba(255,255,255,0.16);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.3);
-  box-shadow:
-    0 8px 22px rgba(0,0,0,0.15),
-    inset 0 0 0 1px rgba(255,255,255,0.25);
-  animation: fadeUp 0.9s ease both;
-}
-
-.contact-map iframe {
+.contact-container {
+  max-width: 1300px;
   width: 100%;
-  height: 250px;
-  border-radius: 16px;
-  border: none;
-  margin-top: 12px;
-  filter: saturate(1.2) contrast(1.15);
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes softFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
 }
 
 @media (max-width: 900px) {
-  .contact-extra {
+  .contact-container {
     grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 600px) {
-  .contact-card {
+/* ---------- Glass effect ---------- */
+.glass {
+  backdrop-filter: blur(14px);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  padding: 32px;
+  transition: 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+}
+
+.glass:hover {
+  transform: scale(1.02);
+}
+
+/* ------------------------------------ */
+/* MAIN SPLIT LAYOUT */
+/* ------------------------------------ */
+.modern-split {
+  display: grid;
+  grid-template-columns: 0.8fr 1fr;
+  padding: 120px 8vw;
+  /* gap: 60px; */
+  /* background: #ffffff; */
+  align-items: center;
+}
+  .cat-sleep{
+    margin-left:100px
+  }
+
+@media(max-width: 900px) {
+  .cat-sleep{
+    margin-left:10px
+  }
+  .modern-split {
     grid-template-columns: 1fr;
-    justify-items: center;
-    text-align: center;
+    gap: 40px;
+    padding:0px 20px
   }
-  .contact-card .info p {
-    text-align: center;
-  }
+}
+
+/* ------------------------------------ */
+/* LEFT SIDE — PREMIUM NEW DESIGN */
+/* ------------------------------------ */
+
+.ms-left-new {
+  display: flex;
+  flex-direction: column;
+  /* gap: 18px; */
+  padding-left: 26px;
+  position: relative;
+}
+
+/* Gradient vertical bar */
+.ms-left-new::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--accent), #5b6cff);
+  border-radius: 10px;
+  opacity: 0.9;
+  transition: 0.3s ease;
+}
+
+.ms-left-new:hover::before {
+  opacity: 1;
+  transform: scaleX(1.1);
+}
+
+/* Small top label */
+.ms-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  color: #7a7f8f;
+}
+
+/* Big modern headline */
+.ms-headline {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.3;
+  color: #111;
+}
+
+/* Trending tag pills */
+.ms-tags {
+  display: flex;
+  gap: 8px;
+  margin: 4px 0 10px;
+}
+
+.ms-tags span {
+  padding: 4px 10px;
+  font-size: 11px;
+  background: #f0f2ff;
+  border-radius: 50px;
+  color: var(--accent);
+  border: 1px solid #ebeeff;
+  transition: 0.25s ease;
+}
+
+.ms-tags span:hover {
+  background: #e1e6ff;
+  transform: translateY(-2px);
+}
+
+/* Stylish small lines */
+.ms-small-line {
+  font-size: 13px;
+  color: #444;
+  line-height: 1.6;
+  opacity: 0.85;
+  transition: 0.25s;
+}
+
+.ms-small-line:hover {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+/* CTA text */
+.ms-cta {
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 6px;
+  color: var(--accent);
 }
 
 .modal[hidden] { display: none; }
@@ -1823,6 +1889,128 @@ body {
   padding: 2px 6px;
   border-radius: 6px;
   font-size: 12px;
+}
+/* MAIN LAYOUT */
+.facts-section {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 120px 8vw;
+  gap: 60px;
+  /* background: #ffffff; */
+  align-items: center;
+}
+
+/* Lottie placed between left & right */
+.dna-lottie {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 260px;
+  height: 260px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;  /* allows clicks to go through */
+  opacity: 0.9;          /* subtle blend */
+  z-index: 5;            /* change to 0 if you want behind */
+}
+
+/* If you want the Lottie BEHIND both sides */
+.dna-lottie.behind {
+  z-index: 0;
+  opacity: 0.35;  /* softer blending */
+  filter: blur(0.6px);
+}
+
+
+
+/* LEFT SIDE */
+.facts-left {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-left:100px
+}
+
+@media(max-width: 900px) {
+  .facts-section {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .facts-left{margin-left:0}
+}
+
+.facts-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #111;
+}
+
+.facts-sub {
+  font-size: 14px;
+  color: #555;
+  max-width: 340px;
+  line-height: 1.6;
+}
+
+/* RIGHT SIDE */
+.facts-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Fact box */
+.fact-box {
+  width: 100%;
+  max-width: 380px;
+  padding: 28px;
+  font-size: 14px;
+  color: #333;
+  background: #f6f7ff;
+  border: 1px solid #e3e6f5;
+  border-radius: 18px;
+  text-align: center;
+  line-height: 1.7;
+  box-shadow: 0 10px 34px rgba(0,0,0,0.08);
+  transition: 0.4s ease;
+  min-height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Controls */
+.fact-controls {
+  display: flex;
+  gap: 12px;
+}
+
+.fact-controls button {
+  padding: 8px 14px;
+  font-size: 15px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.fact-controls button:hover {
+  background: #3948ff;
+  transform: translateY(-2px);
+}
+
+/* Fade animation */
+.fade-out {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ----------------------------------Footer------------------------------------------- */
